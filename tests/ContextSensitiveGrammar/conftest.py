@@ -4,10 +4,10 @@ from src.utils import is_prime
 
 params = [
     {
-        'path': 'resources/primality_check_lba.txt'
-        , 'word': list(f'${"a" * n}#')
+        'path': 'resources/primality_check_csg.txt'
+        , 'word': 'a' * p
     }
-    for n in range(24) if is_prime(n)
+    for p in range(24) if is_prime(p)
 ]
 
 

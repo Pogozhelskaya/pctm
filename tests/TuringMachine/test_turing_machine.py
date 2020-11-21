@@ -1,27 +1,18 @@
-from src.TuringMachine import TuringMachine
+""" Turing Machine Tests module """
+
+from src.turing_machine import TuringMachine
 
 
-def test_turing_machine_manual(manual_suite):
-    tm = TuringMachine.from_txt(manual_suite['TuringMachine'])
-    word = manual_suite['word']
+def test_turing_machine(suite):
+    """
+    Checks that the given Turing Machine accepts the given word
+    :param suite: Dictionary with test suite
+        Dict['path'] - path to the file with the Turing Machine
+        Dict['word'] - accepted by the Turing Machine
+    :return: None
+    """
 
-    assert tm.accepts(word) is True
+    turing_machine = TuringMachine.from_txt(suite['path'])
+    word = suite['word']
 
-
-def test_turing_machine_automatic(automatic_suite):
-    tm = TuringMachine.from_txt(automatic_suite['TuringMachine'])
-    accepted_words = automatic_suite['accepted_words']
-    not_accepted_words = automatic_suite['not_accepted_words']
-
-    def check():
-        for word in accepted_words:
-            if tm.accepts(word) is False:
-                print(f'In accepted_words: {word}!!')
-                return False
-        for word in not_accepted_words:
-            if tm.accepts(word) is True:
-                print(f'In not_accepted_words: {word}!!')
-                return False
-        return True
-
-    assert check() is True
+    assert turing_machine.accepts(word) is True
